@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1000001",
+        "name": {
+            "first": "Jerry",
+            "last": "Cornelius"
+        },
+        "address": {
+            "lines": ["123 Ladbrooke Grove"],
+            "city": "London",
+            "postcode": "SW1 1AA"
+        }
+    },
+    {
+        "id": "1000002",
+        "name": {
+            "first": "Una",
+            "last": "Person"
+        },
+        "address": {
+            "lines": ["456 Ladbrooke Grove"],
+            "city": "London",
+            "postcode": "SW1 1AA"
+        }
+    }
+]

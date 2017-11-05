@@ -1,4 +1,7 @@
 var http = require("http");
+var employeeService = require("./lib/employees");
+var responder = require("./lib/responseGenerator");
+var sendFile = responder.makeSendFile("/public/");
 
 http.createServer((req, res)=>{
     var url;
@@ -12,15 +15,31 @@ http.createServer((req, res)=>{
     
     if ((url = /^\/employees$/i.exec(req.url))) {
         // return a list of employees
-        res.writeHead(200, {"Content-Type": "text/plain"});
-        return res.end("employee list");
+        employeeService.getEmployees((err, data)=>{
+            if (err) {
+                return responder.send500(err, res);
+            }
+            responder.sendJSON(data, res);
+        });
     } else if ((url = /^\/employees\/(\d+)$/i.exec(req.url))) {
         // return a specific employee
-        res.writeHead(200, {"Content-Type": "text/plain"});
-        return res.end("single employee");
+        employeeService.getEmployee(url[1], (err, data)=>{
+            if (err) {
+                return responder.send500(err, res);
+            }
+            
+            if (!data) {
+                return responder.send404(res);
+            }
+            
+            return responder.sendJSON(data, res);
+        });
     } else {
+        url = /^\/employees\/(.+)$/i.exec(req.url)
         // static file
-        res.writeHead(200, {"Content-Type": "text/plain"});
-        return res.end("static file maybe?")
+        res.writeHead(200);
+        //return res.end("static file maybe?");
+        console.log("Sending " + url[1]);
+        return sendFile(url[1], res);
     }
 }).listen(process.env.PORT, process.env.IP);
