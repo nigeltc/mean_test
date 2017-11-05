@@ -1,0 +1,19 @@
+{
+  "name": "mean_test",
+  "version": "1.0.0",
+  "description": "Test MEAN stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nigeltc/mean_test.git"
+  },
+  "author": "Nigel Thornton Clark",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nigeltc/mean_test/issues"
+  },
+  "homepage": "https://github.com/nigeltc/mean_test#readme"
+}
